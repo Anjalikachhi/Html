@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Crop Advisory Flowchart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            flex-direction: column;
+        }
+        .flowchart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            overflow-x: auto;
+        }
+        .stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .node {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            max-width: 250px;
+            border: 2px solid #3b82f6;
+        }
+        .node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .node-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        .node-description {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        .process-group {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            width: 100%;
+        }
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 20px solid #3b82f6;
+            transform: translateY(-8px);
+        }
+
+        /* Arrows for connecting nodes */
+        .connectors {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .vertical-line {
+            height: 2rem;
+            width: 2px;
+            background-color: #6b7280;
+        }
+        .horizontal-line {
+            width: 2rem;
+            height: 2px;
+            background-color: #6b7280;
+        }
+        .branch-connector {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center p-8 min-h-screen">
+
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-12 text-center">AI-Powered Crop Advisory Flowchart</h1>
+
+    <div class="flowchart-container">
+
+        <!-- User Interaction -->
+        <div class="stage">
+            <h2 class="text-2xl font-bold text-blue-600 mb-4">User Interaction Flow</h2>
+            <div class="node">
+                <div class="node-title">Start</div>
+                <div class="node-description">User opens the mobile app</div>
+            </div>
+            <div class="arrow"></div>
+            <div class="node">
+                <div class="node-title">Voice Input</div>
+                <div class="node-description">User speaks a query</div>
+            </div>
+            <div class="arrow"></div>
+            <div class="branch-connector">
+                <div class="horizontal-line"></div>
+                <div class="node">
+                    <div class="node-title">Image Input (Optional)</div>
+                    <div class="node-description">User uploads an image</div>
+                </div>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="arrow"></div>
+            <div class="node">
+                <div class="node-title">Backend Request</div>
+                <div class="node-description">Data sent to backend via Server Actions</div>
+            </div>
+            <div class="arrow"></div>
+             <div class="node">
+                <div class="node-title">Feedback</div>
+                <div class="node-description">User provides feedback on the response</div>
+            </div>
+        </div>
+
+        <div class="connectors">
+            <div class="arrow"></div>
+            <div class="vertical-line"></div>
+            <div class="arrow"></div>
+        </div>
+
+        <!-- Backend & AI Processing -->
+        <div class="stage">
+            <h2 class="text-2xl font-bold text-blue-600 mb-4">Backend & AI Processing Flow</h2>
+            <div class="process-group">
+                <div class="flex flex-col items-center">
+                    <div class="node">
+                        <div class="node-title">Speech-to-Text</div>
+                        <div class="node-description">Voice query transcribed by Gemini</div>
+                    </div>
+                    <div class="arrow"></div>
+                    <div class="node">
+                        <div class="node-title">AI Analysis (Genkit)</div>
+                        <div class="node-description">Processes text, image, and integrated data</div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="node">
+                        <div class="node-title">Database Interaction</div>
+                        <div class="node-description">Store/retrieve data from Firestore</div>
+                    </div>
+                    <div class="arrow"></div>
+                    <div class="node">
+                        <div class="node-title">Response Generation</div>
+                        <div class="node-description">Text-to-Speech conversion</div>
+                    </div>
+                    <div class="arrow"></div>
+                    <div class="node">
+                        <div class="node-title">Feedback Processing</div>
+                        <div class="node-description">Feedback data is analyzed and used for model improvement</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connectors">
+            <div class="arrow"></div>
+            <div class="vertical-line"></div>
+            <div class="arrow"></div>
+        </div>
+
+        <!-- Output & User Experience -->
+        <div class="stage">
+            <h2 class="text-2xl font-bold text-blue-600 mb-4">Output & User Experience</h2>
+            <div class="node">
+                <div class="node-title">Real-Time Alerts</div>
+                <div class="node-description">User receives instant notifications</div>
+            </div>
+            <div class="arrow"></div>
+            <div class="node">
+                <div class="node-title">Voice Response</div>
+                <div class="node-description">Multilingual audio advice</div>
+            </div>
+            <div class="arrow"></div>
+            <div class="node">
+                <div class="node-title">Dashboard Update</div>
+                <div class="node-description">Displays personalized recommendations and insights</div>
+            </div>
+            <div class="arrow"></div>
+            <div class="node">
+                <div class="node-title">End</div>
+                <div class="node-description">User's request is fulfilled</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

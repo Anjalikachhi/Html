@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Satguru Bakery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>New Satguru Bakery</h1>
+    <p>Delicious Cakes for Every Occasion</p>
+  </header>
+
+  <main>
+    <h2>Our Cakes</h2>
+    <div class="cakes" id="cakeContainer"></div>
+  </main>
+
+  <script>
+    fetch('/cakes')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('cakeContainer');
+        data.forEach(cake => {
+          container.innerHTML += `
+            <div class="cake-card">
+              <img src="${cake.imageUrl}" alt="${cake.name}" style="width:100%; border-radius:8px;">
+              <h3>${cake.name}</h3>
+              <p>${cake.description}</p>
+              <p><strong>₹${cake.price}</strong></p>
+              <button onclick="addToCart(${cake.id})">Add to Cart</button>
+            </div>
+          `;
+        });
+      });
+
+    let cart = [];
+    function addToCart(id) {
+      cart.push(id);
+      alert("Cake added to cart!");
+    }
+  </script>
+</body>
+</html>
